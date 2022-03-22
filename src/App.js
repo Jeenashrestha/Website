@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+const App=()=>{
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [p, setP]=useState(0);
+    const [t, setT]=useState(0);
+    const [r, setR]=useState (0);
+    const [SI, setSI]=useState(0);
+    const calculateInterest=()=>{
+      setSI((p*t*r)/100);
+    }
+    return(
+        <div className='App'>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+           Simple Interest Calculaor
+          </Typography>
+        </Toolbar>
+      </AppBar><br></br>
+      <center>
+        <TextField onChange={(event)=>setP(event.target.value)} id="principal" label="Enter Principal" variant="standard" /> <br></br>
+        <TextField onChange={(event)=>setT(event.target.value)} id="time" label="Enter Time" variant="standard" /><br></br>
+        <TextField onChange={(event)=>setR(event.target.value)} id="rate" label="Enter Rate" variant="standard" /><br></br><br></br>
+        <Button onClick={()=>calculateInterest()} variant="contained">Calculate</Button><br></br>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+           Simple Interest is: {SI}
+        </Typography>
+        </center>
+
+       
+      
+      </div>
+    );
 }
-
 export default App;
